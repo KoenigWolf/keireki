@@ -12,7 +12,7 @@ export const profile = {
   birthYear: 1990,
   github: "https://github.com/KoenigWolf",
   email: "contact@example.com",
-  image: "/images/profile.jpg",
+  image: "/images/profile.png",
   resumeUrl: "/documents/resume.pdf",
   careerUrl: "/documents/career.pdf",
 };
