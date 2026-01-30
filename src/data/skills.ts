@@ -1,4 +1,4 @@
-import type { IconType } from "react-icons";
+import type { ComponentType, SVGProps } from "react";
 import {
   SiReact,
   SiNextdotjs,
@@ -21,13 +21,13 @@ import {
   SiGit,
   SiGithub,
   SiVercel,
-} from "react-icons/si";
-import { TbApi } from "react-icons/tb";
-import { VscAzure } from "react-icons/vsc";
+  TbApi,
+  VscAzure,
+} from "@/components/BrandIcons";
 
 export interface Skill {
   name: string;
-  icon: IconType;
+  icon: ComponentType<SVGProps<SVGSVGElement>>;
   color: string; // brand color for hover
 }
 
