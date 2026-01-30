@@ -2,7 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { projects } from "@/data/experience";
+import type { Project } from "@/data/experience";
 import { content } from "@/data/content";
 import { ease, duration, stagger, viewportMargin, sectionHeader } from "@/data/motion";
 import { IconCode, IconGithub, IconExternalLink } from "@/components/Icons";
@@ -11,7 +11,7 @@ function ProjectCard({
   project,
   index,
 }: {
-  project: (typeof projects)[0];
+  project: Project;
   index: number;
 }) {
   const ref = useRef(null);
@@ -102,7 +102,7 @@ function ProjectCard({
   );
 }
 
-export default function Projects() {
+export default function Projects({ projects }: { projects: Project[] }) {
   return (
     <section id="projects" className="relative py-24 sm:py-32 px-6 lg:px-8">
       {/* Background */}

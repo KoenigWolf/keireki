@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import { JsonLd } from "@/components/JsonLd";
+import { fetchGitHubProjects } from "@/lib/github";
 
 const About = dynamic(() => import("@/components/About"));
 const Summary = dynamic(() => import("@/components/Summary"));
@@ -14,7 +15,9 @@ const Documents = dynamic(() => import("@/components/Documents"));
 const Contact = dynamic(() => import("@/components/Contact"));
 const Footer = dynamic(() => import("@/components/Footer"));
 
-export default function Home() {
+export default async function Home() {
+  const projects = await fetchGitHubProjects();
+
   return (
     <>
       <JsonLd />
@@ -27,7 +30,7 @@ export default function Home() {
         <Experience />
         <Education />
         <Stories />
-        <Projects />
+        <Projects projects={projects} />
         <Documents />
         <Contact />
       </main>

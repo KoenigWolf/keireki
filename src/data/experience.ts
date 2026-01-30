@@ -264,7 +264,7 @@ export const experiences: Experience[] = [
   },
 ];
 
-// ─── 個人プロジェクト ───
+// ─── 個人プロジェクト（型定義のみ。データは GitHub API から取得） ───
 
 export interface Project {
   title: string;
@@ -273,13 +273,3 @@ export interface Project {
   github?: string;
   url?: string;
 }
-
-export const projects: Project[] = [
-  {
-    title: "ポートフォリオサイト",
-    description:
-      "Next.js 14 + TypeScript + Tailwind CSS で構築した本サイト。ダークモード対応、Framer Motion によるアニメーション、レスポンシブデザインを実装。",
-    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
-    github: "https://github.com/KoenigWolf/keireki",
-  },
-];
