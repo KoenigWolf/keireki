@@ -16,9 +16,7 @@ const geistMono = localFont({
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://keireki.vercel.app";
-const title = "作田 敏希 | Web エンジニア";
-const description =
-  "複数業界での実務経験を持つWebエンジニア。React／Next.js／TypeScriptを中心としたモダンWeb開発やクラウド技術、UI/UX・セキュリティ強化など幅広い工程に対応。";
+const { title, description, siteName } = content.meta;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -28,7 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "profile",
     locale: "ja_JP",
-    siteName: "作田 敏希 ポートフォリオ",
+    siteName,
     title,
     description,
     images: [
@@ -36,7 +34,7 @@ export const metadata: Metadata = {
         url: "/images/og-image.png",
         width: 1200,
         height: 630,
-        alt: "作田 敏希 | Web エンジニア",
+        alt: title,
       },
     ],
   },

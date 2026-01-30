@@ -10,6 +10,7 @@ export const content = {
     github: "GitHub",
     email: "Email",
     pdfDownload: "PDF ダウンロード",
+    themeToggle: "テーマ切替",
   },
 
   // ─── ナビゲーション ───
@@ -127,6 +128,14 @@ export const content = {
     copyright: "All rights reserved.",
     builtWith: "Built with",
     techStack: ["Next.js", "TypeScript", "Tailwind CSS"],
+  },
+
+  // ─── Meta（SEO / OGP） ───
+  meta: {
+    title: "作田 敏希 | Web エンジニア",
+    description:
+      "複数業界での実務経験を持つWebエンジニア。React／Next.js／TypeScriptを中心としたモダンWeb開発やクラウド技術、UI/UX・セキュリティ強化など幅広い工程に対応。",
+    siteName: "作田 敏希 ポートフォリオ",
   },
 
   // ─── Error ───

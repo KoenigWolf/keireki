@@ -3,6 +3,7 @@
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { content } from "@/data/content";
 
 export default function ThemeToggle() {
   const { theme, setTheme } = useTheme();
@@ -18,7 +19,7 @@ export default function ThemeToggle() {
     <button
       onClick={() => setTheme(isDark ? "light" : "dark")}
       className="relative w-9 h-9 rounded-xl bg-muted hover:bg-border/60 transition-colors flex items-center justify-center overflow-hidden"
-      aria-label="Toggle theme"
+      aria-label={content.common.themeToggle}
     >
       <motion.div
         initial={false}
