@@ -32,6 +32,8 @@ const config: Config = {
           foreground: "var(--accent-foreground)",
         },
         success: "var(--success)",
+        "icon-sun": "var(--icon-sun)",
+        "icon-moon": "var(--icon-moon)",
       },
       fontFamily: {
         sans: ["var(--font-geist-sans)", "system-ui", "sans-serif"],
