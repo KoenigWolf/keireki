@@ -42,23 +42,9 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        {/* Name + title */}
-        <motion.div {...fadeUp(0.3)}>
-          <p className="text-base sm:text-lg text-muted-foreground font-medium tracking-wide mb-1">
-            {profile.name}
-            <span className="mx-2 text-border">|</span>
-            <span className="text-primary">{profile.nickname}</span>
-          </p>
-          <p className="text-sm text-muted-foreground mb-4">
-            {profile.title} / {profile.location}
-            <span className="mx-1.5 text-border">·</span>
-            {profile.origin}
-          </p>
-        </motion.div>
-
         {/* Main headline */}
         <motion.h1
-          {...fadeUp(0.45)}
+          {...fadeUp(0.3)}
           className="typo-hero mb-6 sm:mb-8"
         >
           <span className="gradient-text glow-text">{profile.catchphrase}</span>
@@ -66,7 +52,7 @@ export default function Hero() {
 
         {/* Description */}
         <motion.p
-          {...fadeUp(0.55)}
+          {...fadeUp(0.4)}
           className="typo-hero-sub text-muted-foreground max-w-2xl mx-auto mb-8 sm:mb-10"
         >
           {profile.description}
@@ -74,7 +60,7 @@ export default function Hero() {
 
         {/* Highlight stats */}
         <motion.div
-          {...fadeUp(0.65)}
+          {...fadeUp(0.5)}
           className="flex items-center justify-center gap-4 sm:gap-10 mb-10 sm:mb-12"
         >
           {highlights.map((h, i) => {
