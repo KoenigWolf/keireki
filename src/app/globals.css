@@ -21,6 +21,7 @@
   --gradient-start: #6366f1;
   --gradient-mid: #8b5cf6;
   --gradient-end: #a78bfa;
+  --success: #059669;
   --glass: rgba(255, 255, 255, 0.7);
   --glass-border: rgba(255, 255, 255, 0.3);
   --shadow-color: 0 0% 0%;
@@ -44,6 +45,7 @@
   --gradient-start: #818cf8;
   --gradient-mid: #a78bfa;
   --gradient-end: #c4b5fd;
+  --success: #34d399;
   --glass: rgba(24, 24, 27, 0.6);
   --glass-border: rgba(255, 255, 255, 0.06);
   --shadow-color: 0 0% 0%;
@@ -157,6 +159,52 @@ body {
     z-index: 1;
     pointer-events: none;
     border-radius: inherit;
+  }
+}
+
+/* ─── Print ─── */
+
+@media print {
+  header,
+  footer,
+  .glass-strong,
+  [aria-label="メニュー"] {
+    display: none !important;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  section {
+    break-inside: avoid;
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.75em;
+    color: #666;
+  }
+
+  a[href^="#"]::after {
+    content: none;
+  }
+
+  .gradient-text {
+    background: none !important;
+    -webkit-text-fill-color: currentColor !important;
+    color: black !important;
+  }
+
+  .glow,
+  .glow-text,
+  .card-shine::before {
+    box-shadow: none !important;
+    text-shadow: none !important;
+    display: none;
   }
 }
 

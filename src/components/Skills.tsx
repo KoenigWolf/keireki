@@ -23,10 +23,9 @@ function SkillIcon({ skill, delay }: { skill: Skill; delay: number }) {
     >
       <div
         className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-2xl bg-muted border border-border flex items-center justify-center transition-all duration-300 group-hover/skill:border-transparent group-hover/skill:scale-110 group-hover/skill:shadow-lg"
-        style={{
-          // @ts-expect-error -- CSS custom property for hover glow
-          "--skill-color": skill.color,
-        }}
+        style={
+          { "--skill-color": skill.color } as React.CSSProperties
+        }
       >
         {/* Hover glow ring */}
         <div

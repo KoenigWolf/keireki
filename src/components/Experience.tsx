@@ -105,7 +105,7 @@ function ProjectCard({
             {project.achievements.map((a, i) => (
               <li
                 key={i}
-                className="text-xs sm:text-sm text-emerald-600 dark:text-emerald-400 flex items-start gap-2"
+                className="text-xs sm:text-sm text-success flex items-start gap-2"
               >
                 <svg
                   className="w-3.5 h-3.5 mt-0.5 shrink-0"
