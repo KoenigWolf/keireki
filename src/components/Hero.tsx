@@ -3,9 +3,8 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { profile, highlights } from "@/data/profile";
-import { content } from "@/data/content";
 import { ease, duration } from "@/data/motion";
-import { IconDownload, IconGithub, IconExternalLink, highlightIcons } from "@/components/Icons";
+import { highlightIcons } from "@/components/Icons";
 
 const fadeUp = (delay: number) => ({
   initial: { opacity: 0, y: 40 },
@@ -99,33 +98,6 @@ export default function Hero() {
           })}
         </motion.div>
 
-        {/* CTAs */}
-        <motion.div
-          {...fadeUp(0.75)}
-          className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
-        >
-          <a
-            href={profile.careerUrl}
-            className="group relative inline-flex items-center gap-2 sm:gap-2.5 px-5 sm:px-7 py-3 sm:py-3.5 rounded-xl text-sm sm:text-base font-medium text-primary-foreground overflow-hidden transition-shadow hover:shadow-lg hover:shadow-primary/25"
-          >
-            <span className="absolute inset-0 bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_100%] animate-gradient" />
-            <IconDownload className="w-4 h-4 relative z-10" />
-            <span className="relative z-10">
-              {content.hero.downloadCta}
-            </span>
-          </a>
-
-          <a
-            href={profile.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2 sm:gap-2.5 px-5 sm:px-7 py-3 sm:py-3.5 rounded-xl text-sm sm:text-base font-medium text-foreground glass hover:glow transition-all duration-300"
-          >
-            <IconGithub className="w-5 h-5" />
-            {content.common.github}
-            <IconExternalLink className="w-3.5 h-3.5 opacity-50 group-hover:translate-x-0.5 group-hover:opacity-100 transition-all" />
-          </a>
-        </motion.div>
       </div>
 
     </section>
