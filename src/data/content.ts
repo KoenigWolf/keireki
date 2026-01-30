@@ -21,16 +21,17 @@ export const content = {
   // ─── ナビゲーション ───
   nav: [
     { href: "#about", label: "About" },
-    { href: "#summary", label: "Summary" },
-    { href: "#skills", label: "Skills" },
     { href: "#experience", label: "Experience" },
-    { href: "#education", label: "Education" },
-    { href: "#stories", label: "Stories" },
     { href: "#projects", label: "Projects" },
     { href: "#contact", label: "Contact" },
-    { href: "/resume", label: "Resume" },
-    { href: "/career", label: "Career" },
   ],
+  navDocuments: {
+    label: "Documents",
+    items: [
+      { href: "/resume", label: "履歴書" },
+      { href: "/career", label: "職務経歴書" },
+    ],
+  },
 
   // ─── Hero ───
   hero: {
