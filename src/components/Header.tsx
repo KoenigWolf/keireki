@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import ThemeToggle from "./ThemeToggle";
 import { content } from "@/data/content";
@@ -9,6 +11,8 @@ import { ease, duration, stagger, spring } from "@/data/motion";
 const navLinks = content.nav;
 
 export default function Header() {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
@@ -55,26 +59,47 @@ export default function Header() {
 
             {/* Desktop */}
             <div className="hidden md:flex items-center gap-1">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className={`relative px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 ${
-                    activeSection === link.href.slice(1)
-                      ? "text-primary"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  {activeSection === link.href.slice(1) && (
-                    <motion.span
-                      layoutId="nav-pill"
-                      className="absolute inset-0 bg-primary/10 rounded-full"
-                      transition={spring.snappy}
-                    />
-                  )}
-                  <span className="relative z-10">{link.label}</span>
-                </a>
-              ))}
+              {navLinks.map((link) => {
+                const isPageLink = link.href.startsWith("/");
+                const isActive = isPageLink
+                  ? pathname === link.href
+                  : isHome && activeSection === link.href.slice(1);
+                const href = isPageLink
+                  ? link.href
+                  : isHome
+                    ? link.href
+                    : `/${link.href}`;
+
+                const className = `relative px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 ${
+                  isActive
+                    ? "text-primary"
+                    : "text-muted-foreground hover:text-foreground"
+                }`;
+
+                return isPageLink ? (
+                  <Link key={link.href} href={href} className={className}>
+                    {isActive && (
+                      <motion.span
+                        layoutId="nav-pill"
+                        className="absolute inset-0 bg-primary/10 rounded-full"
+                        transition={spring.snappy}
+                      />
+                    )}
+                    <span className="relative z-10">{link.label}</span>
+                  </Link>
+                ) : (
+                  <a key={link.href} href={href} className={className}>
+                    {isActive && (
+                      <motion.span
+                        layoutId="nav-pill"
+                        className="absolute inset-0 bg-primary/10 rounded-full"
+                        transition={spring.snappy}
+                      />
+                    )}
+                    <span className="relative z-10">{link.label}</span>
+                  </a>
+                );
+              })}
               <div className="ml-3 pl-3 border-l border-border">
                 <ThemeToggle />
               </div>
@@ -133,23 +158,49 @@ export default function Header() {
               transition={{ duration: duration.fast, ease: ease.smooth }}
               className="relative pt-24 px-8 flex flex-col gap-2"
             >
-              {navLinks.map((link, i) => (
-                <motion.a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * stagger.tight }}
-                  className={`text-2xl font-semibold py-3 border-b border-border transition-colors ${
-                    activeSection === link.href.slice(1)
-                      ? "text-primary"
-                      : "text-foreground"
-                  }`}
-                >
-                  {link.label}
-                </motion.a>
-              ))}
+              {navLinks.map((link, i) => {
+                const isPageLink = link.href.startsWith("/");
+                const isActive = isPageLink
+                  ? pathname === link.href
+                  : isHome && activeSection === link.href.slice(1);
+                const href = isPageLink
+                  ? link.href
+                  : isHome
+                    ? link.href
+                    : `/${link.href}`;
+
+                const cls = `text-2xl font-semibold py-3 border-b border-border transition-colors ${
+                  isActive ? "text-primary" : "text-foreground"
+                }`;
+
+                const motionProps = {
+                  initial: { opacity: 0, x: -20 } as const,
+                  animate: { opacity: 1, x: 0 } as const,
+                  transition: { delay: i * stagger.tight },
+                };
+
+                return isPageLink ? (
+                  <motion.div key={link.href} {...motionProps}>
+                    <Link
+                      href={href}
+                      onClick={() => setMobileOpen(false)}
+                      className={cls}
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
+                ) : (
+                  <motion.a
+                    key={link.href}
+                    href={href}
+                    onClick={() => setMobileOpen(false)}
+                    {...motionProps}
+                    className={cls}
+                  >
+                    {link.label}
+                  </motion.a>
+                );
+              })}
             </motion.nav>
           </motion.div>
         )}

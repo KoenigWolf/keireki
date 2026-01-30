@@ -28,6 +28,7 @@ export const content = {
     { href: "#stories", label: "Stories" },
     { href: "#projects", label: "Projects" },
     { href: "#contact", label: "Contact" },
+    { href: "/resume", label: "Resume" },
   ],
 
   // ─── Hero ───
@@ -133,6 +134,22 @@ export const content = {
     copyright: "All rights reserved.",
     builtWith: "Built with",
     techStack: ["Next.js", "TypeScript", "Tailwind CSS"],
+  },
+
+  // ─── Resume ───
+  resume: {
+    title: "履歴書 | 作田 敏希",
+    heading: "履歴書",
+    backLink: "ポートフォリオに戻る",
+    print: "印刷",
+    download: "PDF ダウンロード",
+    sections: {
+      education: "学歴",
+      employment: "職歴",
+      qualifications: "免許・資格",
+      skills: "保有スキル",
+      selfPR: "自己PR",
+    },
   },
 
   // ─── Meta（SEO / OGP） ───
