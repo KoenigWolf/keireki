@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
+  { href: "#about", label: "About" },
   { href: "#summary", label: "Summary" },
   { href: "#skills", label: "Skills" },
   { href: "#experience", label: "Experience" },
@@ -91,7 +92,8 @@ export default function Header() {
               <button
                 onClick={() => setMobileOpen(!mobileOpen)}
                 className="relative w-10 h-10 flex items-center justify-center rounded-xl hover:bg-muted transition-colors"
-                aria-label="Menu"
+                aria-label="メニュー"
+                aria-expanded={mobileOpen}
               >
                 <div className="w-5 flex flex-col gap-[5px]">
                   <span

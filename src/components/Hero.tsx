@@ -42,11 +42,11 @@ export default function Hero() {
 
         {/* Name + title */}
         <motion.div {...fadeUp(0.3)}>
-          <h2 className="text-base sm:text-lg text-muted-foreground font-medium tracking-wide mb-1">
+          <p className="text-base sm:text-lg text-muted-foreground font-medium tracking-wide mb-1">
             {profile.name}
             <span className="mx-2 text-border">|</span>
             <span className="text-primary">{profile.nickname}</span>
-          </h2>
+          </p>
           <p className="text-sm text-muted-foreground mb-4">
             {profile.title} / {profile.location}
             <span className="mx-1.5 text-border">·</span>
