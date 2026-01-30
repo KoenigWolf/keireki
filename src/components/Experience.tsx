@@ -173,11 +173,11 @@ function ExperienceSection({
           <div className="flex-1">
             <div className="flex items-center gap-3 mb-1">
               <div className="w-2 h-2 rounded-full bg-gradient-to-r from-primary to-accent" />
-              <h3 className="text-xl font-bold text-card-foreground">
+              <h3 className="text-lg sm:text-xl font-bold text-card-foreground">
                 {exp.title}
               </h3>
             </div>
-            <p className="text-sm text-muted-foreground ml-5">
+            <p className="text-sm text-muted-foreground ml-0 sm:ml-5">
               {exp.company}
             </p>
           </div>
@@ -187,19 +187,19 @@ function ExperienceSection({
         </div>
 
         {/* Company meta */}
-        <div className="flex flex-wrap gap-3 ml-5 mb-4 text-xs text-muted-foreground">
+        <div className="flex flex-wrap gap-3 ml-0 sm:ml-5 mb-4 text-xs text-muted-foreground">
           <span>{exp.companyDescription}</span>
           <span className="text-border">|</span>
           <span>{exp.employmentType}</span>
         </div>
 
         {/* Description */}
-        <p className="text-sm text-muted-foreground leading-relaxed mb-6 ml-5">
+        <p className="text-sm text-muted-foreground leading-relaxed mb-6 ml-0 sm:ml-5">
           {exp.description}
         </p>
 
         {/* Projects */}
-        <div className="ml-5 space-y-4">
+        <div className="ml-0 sm:ml-5 space-y-4">
           <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
             プロジェクト詳細
           </h4>

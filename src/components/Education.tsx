@@ -27,10 +27,10 @@ function EducationCard({
       className="relative group"
     >
       <div className="absolute -inset-px rounded-2xl bg-gradient-to-br from-primary/20 via-transparent to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
-      <div className="relative bg-card border border-border rounded-2xl p-6 card-shine hover:border-primary/30 transition-all duration-300">
-        <div className="flex items-start justify-between gap-3 mb-3">
+      <div className="relative bg-card border border-border rounded-2xl p-4 sm:p-6 card-shine hover:border-primary/30 transition-all duration-300">
+        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-3">
           <div className="flex items-center gap-3">
-            <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-primary/10">
+            <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-primary/10 shrink-0">
               <svg
                 className="w-5 h-5 text-primary"
                 fill="none"
@@ -47,14 +47,14 @@ function EducationCard({
                 />
               </svg>
             </div>
-            <div>
-              <h3 className="text-base font-bold text-card-foreground">
+            <div className="min-w-0">
+              <h3 className="text-sm sm:text-base font-bold text-card-foreground">
                 {item.institution}
               </h3>
-              <p className="text-sm text-muted-foreground">{item.degree}</p>
+              <p className="text-xs sm:text-sm text-muted-foreground">{item.degree}</p>
             </div>
           </div>
-          <span className="text-xs font-mono text-primary bg-primary/10 px-2.5 py-1 rounded-md border border-primary/20 whitespace-nowrap">
+          <span className="text-xs font-mono text-primary bg-primary/10 px-2.5 py-1 rounded-md border border-primary/20 whitespace-nowrap w-fit">
             {item.period}
           </span>
         </div>

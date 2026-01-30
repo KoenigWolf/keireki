@@ -22,7 +22,7 @@ function SkillIcon({ skill, delay }: { skill: Skill; delay: number }) {
       className="group/skill flex flex-col items-center gap-2.5"
     >
       <div
-        className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-muted border border-border flex items-center justify-center transition-all duration-300 group-hover/skill:border-transparent group-hover/skill:scale-110 group-hover/skill:shadow-lg"
+        className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-2xl bg-muted border border-border flex items-center justify-center transition-all duration-300 group-hover/skill:border-transparent group-hover/skill:scale-110 group-hover/skill:shadow-lg"
         style={{
           // @ts-expect-error -- CSS custom property for hover glow
           "--skill-color": skill.color,
@@ -37,7 +37,7 @@ function SkillIcon({ skill, delay }: { skill: Skill; delay: number }) {
         />
         {/* Icon */}
         <Icon
-          className="relative z-10 w-6 h-6 sm:w-7 sm:h-7 transition-transform duration-300 group-hover/skill:scale-110"
+          className="relative z-10 w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 transition-transform duration-300 group-hover/skill:scale-110"
           style={{ color: skill.color }}
         />
       </div>
@@ -73,9 +73,9 @@ function CategorySection({
       {/* Card glow */}
       <div className="absolute -inset-px rounded-2xl bg-gradient-to-br from-primary/20 via-transparent to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
 
-      <div className="relative bg-card border border-border rounded-2xl p-6 sm:p-8 card-shine hover:border-primary/30 transition-all duration-300">
+      <div className="relative bg-card border border-border rounded-2xl p-4 sm:p-6 md:p-8 card-shine hover:border-primary/30 transition-all duration-300">
         {/* Category header */}
-        <div className="flex items-baseline justify-between mb-8">
+        <div className="flex items-baseline justify-between mb-5 sm:mb-8">
           <div>
             <h3 className="text-lg font-bold text-card-foreground">
               {category.category}
@@ -90,7 +90,7 @@ function CategorySection({
         </div>
 
         {/* Skill icons grid */}
-        <div className="grid grid-cols-4 sm:grid-cols-4 gap-4 sm:gap-5 place-items-center">
+        <div className="grid grid-cols-3 sm:grid-cols-4 gap-3 sm:gap-5 place-items-center">
           {category.skills.map((skill, i) => (
             <SkillIcon
               key={skill.name}
