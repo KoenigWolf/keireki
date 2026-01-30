@@ -80,7 +80,7 @@ export default function About() {
             Career Path
           </h2>
           <p className="text-muted-foreground max-w-xl">
-            沖縄出身のサポートエンジニアから、東京のフルスタックエンジニアへ。
+            兵庫出身のサポートエンジニアから、東京のフルスタックエンジニアへ。
             技術とビジネスの両面からプロダクトに貢献する道を歩んでいます。
           </p>
         </motion.div>
