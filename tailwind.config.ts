@@ -36,8 +36,13 @@ const config: Config = {
         "icon-moon": "var(--icon-moon)",
       },
       fontFamily: {
-        sans: ["var(--font-geist-sans)", "system-ui", "sans-serif"],
-        mono: ["var(--font-geist-mono)", "monospace"],
+        sans: [
+          "var(--font-sans)",
+          "var(--font-jp)",
+          "system-ui",
+          "sans-serif",
+        ],
+        mono: ["var(--font-mono)", "monospace"],
       },
       animation: {
         "float": "float 6s ease-in-out infinite",
