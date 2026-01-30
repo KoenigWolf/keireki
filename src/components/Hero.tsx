@@ -27,11 +27,11 @@ export default function Hero() {
 
       <div className="relative max-w-5xl mx-auto px-6 lg:px-8 text-center">
         {/* Profile photo */}
-        <motion.div {...fadeUp(0.1)} className="mb-6 flex justify-center">
+        <motion.div {...fadeUp(0.1)} className="mb-8 sm:mb-10 flex justify-center">
           <div className="relative group">
             {/* Glow ring */}
-            <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-primary via-accent to-primary opacity-60 blur-md group-hover:opacity-80 transition-opacity duration-500" />
-            <div className="relative w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full border-2 border-background overflow-hidden">
+            <div className="absolute -inset-1.5 rounded-full bg-gradient-to-br from-primary via-accent to-primary opacity-60 blur-lg group-hover:opacity-80 transition-opacity duration-500" />
+            <div className="relative w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 lg:w-44 lg:h-44 rounded-full border-2 border-background overflow-hidden">
               <Image
                 src={profile.image}
                 alt={profile.name}
