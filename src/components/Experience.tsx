@@ -3,6 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { experiences, type ProjectDetail } from "@/data/experience";
+import { content } from "@/data/content";
 
 function ProjectCard({
   project,
@@ -80,7 +81,7 @@ function ProjectCard({
       {/* Responsibilities */}
       <div className="mb-4">
         <h5 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
-          担当業務
+          {content.experience.responsibilities}
         </h5>
         <ul className="space-y-1.5">
           {project.responsibilities.map((r, i) => (
@@ -99,7 +100,7 @@ function ProjectCard({
       {project.achievements && project.achievements.length > 0 && (
         <div className="mb-4">
           <h5 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
-            成果
+            {content.experience.achievements}
           </h5>
           <ul className="space-y-1.5">
             {project.achievements.map((a, i) => (
@@ -201,7 +202,7 @@ function ExperienceSection({
         {/* Projects */}
         <div className="ml-0 sm:ml-5 space-y-4">
           <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-            プロジェクト詳細
+            {content.experience.projectDetails}
           </h4>
           {exp.projects.map((project, pi) => (
             <ProjectCard
@@ -229,14 +230,13 @@ export default function Experience() {
           className="mb-16"
         >
           <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-3">
-            Experience
+            {content.experience.label}
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            職務経歴
+            {content.experience.heading}
           </h2>
           <p className="text-muted-foreground max-w-xl">
-            サポートエンジニアからフルスタックエンジニアへ。
-            着実にスキルを積み上げてきたキャリアの軌跡。
+            {content.experience.description}
           </p>
         </motion.div>
 

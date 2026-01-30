@@ -3,6 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { skillCategories, type Skill } from "@/data/skills";
+import { content } from "@/data/content";
 
 function SkillIcon({ skill, delay }: { skill: Skill; delay: number }) {
   const ref = useRef(null);
@@ -123,14 +124,13 @@ export default function Skills() {
           className="mb-16"
         >
           <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-3">
-            Skills
+            {content.skills.label}
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            Tech Stack
+            {content.skills.heading}
           </h2>
           <p className="text-muted-foreground max-w-xl">
-            フロントエンドからバックエンド、インフラまで。
-            モダンな技術スタックを活用したプロダクト開発が強みです。
+            {content.skills.description}
           </p>
         </motion.div>
 

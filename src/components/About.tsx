@@ -3,6 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { timeline } from "@/data/profile";
+import { content } from "@/data/content";
 
 const sectionHeader = {
   initial: { opacity: 0, y: 30 },
@@ -74,14 +75,13 @@ export default function About() {
         {/* Section header */}
         <motion.div {...sectionHeader} className="mb-16">
           <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-3">
-            About
+            {content.about.label}
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            Career Path
+            {content.about.heading}
           </h2>
           <p className="text-muted-foreground max-w-xl">
-            兵庫出身のサポートエンジニアから、東京のフルスタックエンジニアへ。
-            技術とビジネスの両面からプロダクトに貢献する道を歩んでいます。
+            {content.about.description}
           </p>
         </motion.div>
 

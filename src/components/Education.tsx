@@ -3,6 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { education, qualifications } from "@/data/profile";
+import { content } from "@/data/content";
 
 function EducationCard({
   item,
@@ -136,13 +137,13 @@ export default function Education() {
           className="mb-16"
         >
           <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-3">
-            Education & Qualifications
+            {content.education.label}
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            学歴・資格
+            {content.education.heading}
           </h2>
           <p className="text-muted-foreground max-w-xl">
-            学術的な基盤と、継続的なスキルアップの証。
+            {content.education.description}
           </p>
         </motion.div>
 
@@ -159,7 +160,7 @@ export default function Education() {
               }}
               className="text-lg font-bold text-foreground mb-5"
             >
-              学歴
+              {content.education.educationHeading}
             </motion.h3>
             <div className="space-y-4">
               {education.map((item, index) => (
@@ -180,7 +181,7 @@ export default function Education() {
               }}
               className="text-lg font-bold text-foreground mb-5"
             >
-              資格・認定
+              {content.education.qualificationsHeading}
             </motion.h3>
             <div className="relative bg-card border border-border rounded-2xl p-5 sm:p-6 card-shine">
               {qualifications.map((item, index) => (

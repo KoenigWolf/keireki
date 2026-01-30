@@ -3,6 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { careerSummary, strengths } from "@/data/profile";
+import { content } from "@/data/content";
 
 function StrengthCard({
   strength,
@@ -57,13 +58,13 @@ export default function Summary() {
           className="mb-16"
         >
           <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-3">
-            Summary
+            {content.summary.label}
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            職務要約
+            {content.summary.heading}
           </h2>
           <p className="text-muted-foreground max-w-xl">
-            これまでのキャリアの歩みと、技術者としての強み。
+            {content.summary.description}
           </p>
         </motion.div>
 
@@ -96,7 +97,7 @@ export default function Summary() {
           className="mb-8"
         >
           <h3 className="text-xl sm:text-2xl font-bold text-foreground">
-            強み・自己PR
+            {content.summary.strengthsHeading}
           </h3>
         </motion.div>
 

@@ -3,16 +3,9 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import ThemeToggle from "./ThemeToggle";
+import { content } from "@/data/content";
 
-const navLinks = [
-  { href: "#about", label: "About" },
-  { href: "#summary", label: "Summary" },
-  { href: "#skills", label: "Skills" },
-  { href: "#experience", label: "Experience" },
-  { href: "#education", label: "Education" },
-  { href: "#projects", label: "Projects" },
-  { href: "#contact", label: "Contact" },
-];
+const navLinks = content.nav;
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -90,9 +83,10 @@ export default function Header() {
             <div className="flex items-center gap-2 md:hidden">
               <ThemeToggle />
               <button
+                type="button"
                 onClick={() => setMobileOpen(!mobileOpen)}
                 className="relative w-10 h-10 flex items-center justify-center rounded-xl hover:bg-muted transition-colors"
-                aria-label="メニュー"
+                aria-label={content.common.menuLabel}
                 aria-expanded={mobileOpen}
               >
                 <div className="w-5 flex flex-col gap-[5px]">

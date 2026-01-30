@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { content } from "@/data/content";
 import "./globals.css";
 
 const geistSans = localFont({
@@ -62,7 +63,7 @@ export default function RootLayout({
             href="#main-content"
             className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-primary focus:text-primary-foreground focus:text-sm focus:font-medium"
           >
-            メインコンテンツへスキップ
+            {content.common.skipLink}
           </a>
           {children}
         </ThemeProvider>

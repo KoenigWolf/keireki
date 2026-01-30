@@ -3,25 +3,13 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { profile } from "@/data/profile";
+import { content } from "@/data/content";
 
-const documents = [
-  {
-    title: "履歴書",
-    subtitle: "Resume",
-    description: "基本情報・学歴・資格など",
-    url: profile.resumeUrl,
-    iconPath:
-      "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z",
-  },
-  {
-    title: "職務経歴書",
-    subtitle: "Career Sheet",
-    description: "業務経験・プロジェクト実績",
-    url: profile.careerUrl,
-    iconPath:
-      "M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z",
-  },
-];
+const urls = [profile.resumeUrl, profile.careerUrl];
+const documents = content.documents.items.map((item, i) => ({
+  ...item,
+  url: urls[i],
+}));
 
 export default function Documents() {
   const ref = useRef(null);
@@ -38,13 +26,13 @@ export default function Documents() {
           className="mb-16"
         >
           <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-3">
-            Documents
+            {content.documents.label}
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            Download
+            {content.documents.heading}
           </h2>
           <p className="text-muted-foreground max-w-xl">
-            採用に関する書類をダウンロードいただけます。
+            {content.documents.description}
           </p>
         </motion.div>
 
@@ -109,7 +97,7 @@ export default function Documents() {
                           d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                         />
                       </svg>
-                      PDF ダウンロード
+                      {content.common.pdfDownload}
                     </span>
                   </div>
                 </div>
