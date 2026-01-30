@@ -11,7 +11,6 @@ const Experience = dynamic(() => import("@/components/Experience"));
 const Education = dynamic(() => import("@/components/Education"));
 const Stories = dynamic(() => import("@/components/Stories"));
 const Projects = dynamic(() => import("@/components/Projects"));
-const Documents = dynamic(() => import("@/components/Documents"));
 const Contact = dynamic(() => import("@/components/Contact"));
 const Footer = dynamic(() => import("@/components/Footer"));
 
@@ -31,7 +30,6 @@ export default async function Home() {
         <Education />
         <Stories />
         <Projects projects={projects} />
-        <Documents />
         <Contact />
       </main>
       <Footer />
