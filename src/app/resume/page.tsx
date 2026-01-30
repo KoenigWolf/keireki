@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, MapPin, Mail, Phone } from "lucide-react";
+import { MapPin, Mail, Phone, ChevronLeft } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -62,13 +62,14 @@ export default function ResumePage() {
   return (
     <>
       {/* Top action bar */}
-      <div className="sticky top-0 z-40 border-b border-border bg-background/80 backdrop-blur-xl print:hidden">
-        <div className="max-w-3xl mx-auto px-6 py-3 flex items-center justify-between">
+      <div className="sticky top-0 z-40 bg-background/60 backdrop-blur-2xl print:hidden">
+        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+        <div className="max-w-3xl mx-auto px-6 py-2.5 flex items-center justify-between">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+            className="group inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground rounded-lg px-3 py-1.5 -ml-3 hover:bg-muted/60 transition-all duration-200"
           >
-            <ArrowLeft className="w-4 h-4" />
+            <ChevronLeft className="w-4 h-4 transition-transform duration-200 group-hover:-translate-x-0.5" />
             {t.backLink}
           </Link>
           <ResumeActions
