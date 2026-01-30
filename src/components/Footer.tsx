@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { profile } from "@/data/profile";
 import { content } from "@/data/content";
-import { IconGithub, IconMail } from "@/components/Icons";
+import { IconGithub } from "@/components/Icons";
 
 const sectionLinks = content.nav;
 const docLinks = content.navDocuments;
@@ -32,13 +32,6 @@ export default function Footer() {
                 aria-label={content.common.github}
               >
                 <IconGithub className="w-4 h-4" />
-              </a>
-              <a
-                href={`mailto:${profile.email}`}
-                className="w-9 h-9 rounded-lg bg-muted/60 flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
-                aria-label={content.common.email}
-              >
-                <IconMail className="w-4 h-4" />
               </a>
             </div>
           </div>

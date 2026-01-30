@@ -5,7 +5,7 @@ import { useRef } from "react";
 import { profile } from "@/data/profile";
 import { content } from "@/data/content";
 import { ease, duration, viewportMargin } from "@/data/motion";
-import { IconMail, IconGithub, IconExternalLink, IconMapPin } from "@/components/Icons";
+import { IconGithub, IconExternalLink, IconMapPin } from "@/components/Icons";
 
 export default function Contact() {
   const ref = useRef(null);
@@ -51,7 +51,7 @@ export default function Contact() {
           {content.contact.description}
         </motion.p>
 
-        {/* Email — primary CTA */}
+        {/* GitHub — primary CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -59,41 +59,25 @@ export default function Contact() {
           className="mb-10"
         >
           <a
-            href={`mailto:${profile.email}`}
-            className="group relative inline-flex items-center gap-3 px-8 py-4 rounded-2xl font-medium text-primary-foreground overflow-hidden transition-shadow hover:shadow-xl hover:shadow-primary/20"
-          >
-            <span className="absolute inset-0 bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_100%] animate-gradient" />
-            <IconMail className="w-5 h-5 relative z-10" />
-            <span className="relative z-10">{content.contact.emailCta}</span>
-          </a>
-        </motion.div>
-
-        {/* Divider */}
-        <motion.div
-          initial={{ opacity: 0, scaleX: 0 }}
-          animate={isInView ? { opacity: 1, scaleX: 1 } : {}}
-          transition={{ duration: duration.slow, delay: 0.4, ease: ease.smooth }}
-          className="w-16 h-px bg-border mx-auto mb-10"
-        />
-
-        {/* Secondary links */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: duration.normal, delay: 0.5, ease: ease.smooth }}
-          className="flex items-center justify-center gap-8 text-sm text-muted-foreground"
-        >
-          <a
             href={profile.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 hover:text-foreground transition-colors group"
+            className="group relative inline-flex items-center gap-3 px-8 py-4 rounded-2xl font-medium text-primary-foreground overflow-hidden transition-shadow hover:shadow-xl hover:shadow-primary/20"
           >
-            <IconGithub className="w-4 h-4" />
-            GitHub
-            <IconExternalLink className="w-3 h-3 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+            <span className="absolute inset-0 bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_100%] animate-gradient" />
+            <IconGithub className="w-5 h-5 relative z-10" />
+            <span className="relative z-10">GitHub</span>
+            <IconExternalLink className="w-4 h-4 relative z-10 opacity-70 group-hover:translate-x-0.5 transition-transform" />
           </a>
+        </motion.div>
 
+        {/* Location */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: duration.normal, delay: 0.4, ease: ease.smooth }}
+          className="flex items-center justify-center text-sm text-muted-foreground"
+        >
           <span className="inline-flex items-center gap-1.5">
             <IconMapPin className="w-4 h-4" />
             {profile.location}
