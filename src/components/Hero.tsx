@@ -12,7 +12,7 @@ const fadeUp = (delay: number) => ({
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden pt-24">
       {/* Ambient background */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[128px] animate-pulse-slow" />
@@ -23,19 +23,8 @@ export default function Hero() {
       </div>
 
       <div className="relative max-w-5xl mx-auto px-6 lg:px-8 text-center">
-        {/* Status badge */}
-        <motion.div {...fadeUp(0.1)} className="mb-8">
-          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm font-medium text-foreground">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-            </span>
-            Open to opportunities
-          </span>
-        </motion.div>
-
         {/* Profile photo */}
-        <motion.div {...fadeUp(0.2)} className="mb-6 flex justify-center">
+        <motion.div {...fadeUp(0.1)} className="mb-6 flex justify-center">
           <div className="relative group">
             {/* Glow ring */}
             <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-primary via-accent to-primary opacity-60 blur-md group-hover:opacity-80 transition-opacity duration-500" />
@@ -150,30 +139,6 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-          className="flex flex-col items-center gap-2"
-        >
-          <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground font-medium">
-            Scroll
-          </span>
-          <div className="w-5 h-8 border border-muted-foreground/30 rounded-full flex items-start justify-center pt-1.5">
-            <motion.div
-              animate={{ opacity: [1, 0], y: [0, 8] }}
-              transition={{ repeat: Infinity, duration: 1.5, ease: "easeOut" }}
-              className="w-1 h-1 rounded-full bg-primary"
-            />
-          </div>
-        </motion.div>
-      </motion.div>
     </section>
   );
 }
