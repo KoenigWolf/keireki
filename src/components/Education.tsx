@@ -56,11 +56,11 @@ function EducationCard({
               <p className="text-xs sm:text-sm text-muted-foreground">{item.degree}</p>
             </div>
           </div>
-          <span className="text-xs font-mono text-primary bg-primary/10 px-2.5 py-1 rounded-md border border-primary/20 whitespace-nowrap w-fit">
+          <span className="typo-mono text-primary bg-primary/10 px-2.5 py-1 rounded-md border border-primary/20 whitespace-nowrap w-fit">
             {item.period}
           </span>
         </div>
-        <p className="text-sm text-muted-foreground leading-relaxed">
+        <p className="typo-body text-muted-foreground">
           {item.description}
         </p>
       </div>
@@ -90,7 +90,7 @@ function QualificationItem({
       }}
       className="flex items-center gap-4 py-3 border-b border-border last:border-0 group"
     >
-      <span className="text-xs font-mono text-primary bg-primary/10 px-2.5 py-1 rounded-md border border-primary/20 shrink-0">
+      <span className="typo-mono text-primary bg-primary/10 px-2.5 py-1 rounded-md border border-primary/20 shrink-0">
         {item.year}
       </span>
       <div className="flex items-center gap-2 flex-1 min-w-0">
@@ -134,10 +134,10 @@ export default function Education() {
           {...sectionHeader}
           className="mb-16"
         >
-          <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-3">
+          <span className="inline-block typo-label text-primary mb-3">
             {content.education.label}
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+          <h2 className="typo-section-heading text-foreground mb-4">
             {content.education.heading}
           </h2>
           <p className="text-muted-foreground max-w-xl">
@@ -156,7 +156,7 @@ export default function Education() {
                 duration: duration.normal,
                 ease: ease.smooth,
               }}
-              className="text-lg font-bold text-foreground mb-5"
+              className="typo-sub-heading text-foreground mb-5"
             >
               {content.education.educationHeading}
             </motion.h3>
@@ -177,7 +177,7 @@ export default function Education() {
                 duration: duration.normal,
                 ease: ease.smooth,
               }}
-              className="text-lg font-bold text-foreground mb-5"
+              className="typo-sub-heading text-foreground mb-5"
             >
               {content.education.qualificationsHeading}
             </motion.h3>

@@ -51,10 +51,10 @@ function TimelineItem({
         <span className="inline-block px-3 py-1 text-[11px] font-semibold uppercase tracking-wider bg-primary/10 text-primary rounded-md mb-3">
           {item.year}
         </span>
-        <h3 className="text-lg font-bold text-foreground mb-2">
+        <h3 className="typo-sub-heading text-foreground mb-2">
           {item.title}
         </h3>
-        <p className="text-sm text-muted-foreground leading-relaxed max-w-lg">
+        <p className="typo-body text-muted-foreground max-w-lg">
           {item.description}
         </p>
       </div>
@@ -68,10 +68,10 @@ export default function About() {
       <div className="max-w-4xl mx-auto">
         {/* Section header */}
         <motion.div {...sectionHeader} className="mb-16">
-          <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-3">
+          <span className="inline-block typo-label text-primary mb-3">
             {content.about.label}
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+          <h2 className="typo-section-heading text-foreground mb-4">
             {content.about.heading}
           </h2>
           <p className="text-muted-foreground max-w-xl">

@@ -39,7 +39,7 @@ function ProjectCard({
             {project.summary}
           </p>
         </div>
-        <span className="text-xs font-mono text-primary bg-primary/10 px-2.5 py-1 rounded-md border border-primary/20 whitespace-nowrap w-fit">
+        <span className="typo-mono text-primary bg-primary/10 px-2.5 py-1 rounded-md border border-primary/20 whitespace-nowrap w-fit">
           {project.period}
         </span>
       </div>
@@ -58,7 +58,7 @@ function ProjectCard({
 
       {/* Responsibilities */}
       <div className="mb-4">
-        <h5 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
+        <h5 className="typo-caption-label text-muted-foreground mb-2">
           {content.experience.responsibilities}
         </h5>
         <ul className="space-y-1.5">
@@ -77,7 +77,7 @@ function ProjectCard({
       {/* Achievements */}
       {project.achievements && project.achievements.length > 0 && (
         <div className="mb-4">
-          <h5 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
+          <h5 className="typo-caption-label text-muted-foreground mb-2">
             {content.experience.achievements}
           </h5>
           <ul className="space-y-1.5">
@@ -148,7 +148,7 @@ function ExperienceSection({
               {exp.company}
             </p>
           </div>
-          <span className="inline-flex items-center px-3 py-1.5 text-xs font-mono font-medium text-primary bg-primary/10 rounded-lg border border-primary/20 w-fit whitespace-nowrap">
+          <span className="inline-flex items-center px-3 py-1.5 typo-mono font-medium text-primary bg-primary/10 rounded-lg border border-primary/20 w-fit whitespace-nowrap">
             {exp.period}
           </span>
         </div>
@@ -161,13 +161,13 @@ function ExperienceSection({
         </div>
 
         {/* Description */}
-        <p className="text-sm text-muted-foreground leading-relaxed mb-6 ml-0 sm:ml-5">
+        <p className="typo-body text-muted-foreground mb-6 ml-0 sm:ml-5">
           {exp.description}
         </p>
 
         {/* Projects */}
         <div className="ml-0 sm:ml-5 space-y-4">
-          <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+          <h4 className="typo-caption-label text-muted-foreground">
             {content.experience.projectDetails}
           </h4>
           {exp.projects.map((project, pi) => (
@@ -192,10 +192,10 @@ export default function Experience() {
           {...sectionHeader}
           className="mb-16"
         >
-          <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-3">
+          <span className="inline-block typo-label text-primary mb-3">
             {content.experience.label}
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+          <h2 className="typo-section-heading text-foreground mb-4">
             {content.experience.heading}
           </h2>
           <p className="text-muted-foreground max-w-xl">

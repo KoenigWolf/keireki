@@ -38,7 +38,7 @@ function StrengthCard({
             {strength.title}
           </h3>
         </div>
-        <p className="text-sm text-muted-foreground leading-relaxed">
+        <p className="typo-body text-muted-foreground">
           {strength.description}
         </p>
       </div>
@@ -55,10 +55,10 @@ export default function Summary() {
           {...sectionHeader}
           className="mb-16"
         >
-          <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-3">
+          <span className="inline-block typo-label text-primary mb-3">
             {content.summary.label}
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+          <h2 className="typo-section-heading text-foreground mb-4">
             {content.summary.heading}
           </h2>
           <p className="text-muted-foreground max-w-xl">
@@ -79,7 +79,7 @@ export default function Summary() {
                 delay: i * stagger.normal,
                 ease: ease.smooth,
               }}
-              className="text-sm sm:text-base text-muted-foreground leading-relaxed"
+              className="typo-body-lg text-muted-foreground"
             >
               {paragraph}
             </motion.p>

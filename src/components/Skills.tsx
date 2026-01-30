@@ -78,14 +78,14 @@ function CategorySection({
         {/* Category header */}
         <div className="flex items-baseline justify-between mb-5 sm:mb-8">
           <div>
-            <h3 className="text-lg font-bold text-card-foreground">
+            <h3 className="typo-sub-heading text-card-foreground">
               {category.category}
             </h3>
             <p className="text-xs text-muted-foreground mt-0.5">
               {category.description}
             </p>
           </div>
-          <span className="text-xs font-mono text-muted-foreground tabular-nums">
+          <span className="typo-mono text-muted-foreground tabular-nums">
             {category.skills.length}
           </span>
         </div>
@@ -121,10 +121,10 @@ export default function Skills() {
           {...sectionHeader}
           className="mb-16"
         >
-          <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-3">
+          <span className="inline-block typo-label text-primary mb-3">
             {content.skills.label}
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+          <h2 className="typo-section-heading text-foreground mb-4">
             {content.skills.heading}
           </h2>
           <p className="text-muted-foreground max-w-xl">

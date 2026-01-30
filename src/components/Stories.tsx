@@ -50,7 +50,7 @@ function StoryCard({
           {story.paragraphs.map((p, i) => (
             <p
               key={i}
-              className="text-sm text-muted-foreground leading-relaxed"
+              className="typo-body text-muted-foreground"
             >
               {p}
             </p>
@@ -70,10 +70,10 @@ export default function Stories() {
           {...sectionHeader}
           className="mb-16"
         >
-          <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-3">
+          <span className="inline-block typo-label text-primary mb-3">
             {content.stories.label}
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+          <h2 className="typo-section-heading text-foreground mb-4">
             {content.stories.heading}
           </h2>
           <p className="text-muted-foreground max-w-xl">
