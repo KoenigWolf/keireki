@@ -5,6 +5,7 @@ import { useRef } from "react";
 import { profile } from "@/data/profile";
 import { content } from "@/data/content";
 import { ease, duration, stagger, viewportMargin } from "@/data/motion";
+import { IconDocument, IconDownload } from "@/components/Icons";
 
 const urls = [profile.resumeUrl, profile.careerUrl];
 const documents = content.documents.items.map((item, i) => ({
@@ -58,19 +59,7 @@ export default function Documents() {
               <div className="relative bg-card border border-border rounded-2xl p-6 card-shine hover:border-primary/30 transition-all duration-300">
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <svg
-                      className="w-6 h-6 text-primary"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={1.5}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d={doc.iconPath}
-                      />
-                    </svg>
+                    <IconDocument className="w-6 h-6" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-baseline gap-2 mb-1">
@@ -85,19 +74,7 @@ export default function Documents() {
                       {doc.description}
                     </p>
                     <span className="inline-flex items-center gap-1.5 text-sm text-primary font-medium group-hover:gap-2.5 transition-all">
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                        />
-                      </svg>
+                      <IconDownload className="w-4 h-4" />
                       {content.common.pdfDownload}
                     </span>
                   </div>
