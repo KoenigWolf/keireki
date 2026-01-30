@@ -9,17 +9,21 @@ import {
   SiHtml5,
   SiCss3,
   SiNodedotjs,
-  SiRubyonrails,
   SiPython,
+  SiPhp,
+  SiLaravel,
+  SiGraphql,
   SiPostgresql,
   SiMysql,
-  SiRedis,
+  SiJest,
+  SiAmazonwebservices,
+  SiDocker,
   SiGit,
   SiGithub,
-  SiDocker,
   SiVercel,
 } from "react-icons/si";
 import { TbApi } from "react-icons/tb";
+import { VscAzure } from "react-icons/vsc";
 
 export interface Skill {
   name: string;
@@ -49,32 +53,36 @@ export const skillCategories: SkillCategory[] = [
     ],
   },
   {
-    category: "Backend",
-    description: "サーバーサイド・API",
+    category: "Backend / DB",
+    description: "サーバーサイド・データベース",
     skills: [
+      { name: "PHP", icon: SiPhp, color: "#777BB4" },
+      { name: "Laravel", icon: SiLaravel, color: "#FF2D20" },
       { name: "Node.js", icon: SiNodedotjs, color: "#5FA04E" },
       { name: "Python", icon: SiPython, color: "#3776AB" },
-      { name: "Rails", icon: SiRubyonrails, color: "#D30001" },
-      { name: "REST API", icon: TbApi, color: "#6366F1" },
-    ],
-  },
-  {
-    category: "Database",
-    description: "データ基盤",
-    skills: [
       { name: "PostgreSQL", icon: SiPostgresql, color: "#4169E1" },
       { name: "MySQL", icon: SiMysql, color: "#4479A1" },
-      { name: "Redis", icon: SiRedis, color: "#FF4438" },
+      { name: "REST API", icon: TbApi, color: "#6366F1" },
+      { name: "GraphQL", icon: SiGraphql, color: "#E10098" },
     ],
   },
   {
-    category: "DevOps / Tools",
-    description: "開発環境・運用",
+    category: "Cloud & Infrastructure",
+    description: "クラウド・インフラ基盤",
+    skills: [
+      { name: "AWS", icon: SiAmazonwebservices, color: "#FF9900" },
+      { name: "Azure", icon: VscAzure, color: "#0078D4" },
+      { name: "Docker", icon: SiDocker, color: "#2496ED" },
+      { name: "Vercel", icon: SiVercel, color: "#ffffff" },
+    ],
+  },
+  {
+    category: "DevOps & Testing",
+    description: "開発環境・テスト・品質",
     skills: [
       { name: "Git", icon: SiGit, color: "#F05032" },
       { name: "GitHub", icon: SiGithub, color: "#ffffff" },
-      { name: "Docker", icon: SiDocker, color: "#2496ED" },
-      { name: "Vercel", icon: SiVercel, color: "#ffffff" },
+      { name: "Jest", icon: SiJest, color: "#C21325" },
     ],
   },
 ];
