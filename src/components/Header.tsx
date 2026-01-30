@@ -49,7 +49,7 @@ export default function Header() {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <a href="#" className="relative group">
-              <span className="text-xl font-bold gradient-text">Zack</span>
+              <span className="text-xl font-bold gradient-text">{content.header.logoText}</span>
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-accent group-hover:w-full transition-all duration-300" />
             </a>
 

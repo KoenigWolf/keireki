@@ -13,6 +13,11 @@ export const content = {
     themeToggle: "テーマ切替",
   },
 
+  // ─── Header ───
+  header: {
+    logoText: "Zack",
+  },
+
   // ─── ナビゲーション ───
   nav: [
     { href: "#about", label: "About" },
