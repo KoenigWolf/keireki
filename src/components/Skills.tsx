@@ -2,33 +2,53 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { skillCategories } from "@/data/skills";
+import { skillCategories, type Skill } from "@/data/skills";
 
-function SkillBar({ name, level, delay }: { name: string; level: number; delay: number }) {
+function SkillIcon({ skill, delay }: { skill: Skill; delay: number }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-30px" });
+  const isInView = useInView(ref, { once: true, margin: "-20px" });
+  const Icon = skill.icon;
 
   return (
-    <div ref={ref} className="group">
-      <div className="flex justify-between items-center mb-1.5">
-        <span className="text-sm font-medium text-card-foreground group-hover:text-primary transition-colors">
-          {name}
-        </span>
-        <span className="text-xs font-mono text-muted-foreground">{level}/5</span>
-      </div>
-      <div className="h-1.5 bg-muted rounded-full overflow-hidden">
-        <motion.div
-          initial={{ width: 0 }}
-          animate={isInView ? { width: `${(level / 5) * 100}%` } : {}}
-          transition={{ duration: 1, delay, ease: [0.22, 1, 0.36, 1] }}
-          className="h-full rounded-full bg-gradient-to-r from-primary via-accent to-primary-light"
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={isInView ? { opacity: 1, scale: 1 } : {}}
+      transition={{
+        duration: 0.4,
+        delay,
+        ease: [0.22, 1, 0.36, 1] as const,
+      }}
+      className="group/skill flex flex-col items-center gap-2.5"
+    >
+      <div
+        className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-muted border border-border flex items-center justify-center transition-all duration-300 group-hover/skill:border-transparent group-hover/skill:scale-110 group-hover/skill:shadow-lg"
+        style={{
+          // @ts-expect-error -- CSS custom property for hover glow
+          "--skill-color": skill.color,
+        }}
+      >
+        {/* Hover glow ring */}
+        <div
+          className="absolute -inset-px rounded-2xl opacity-0 group-hover/skill:opacity-100 transition-opacity duration-300"
+          style={{
+            background: `linear-gradient(135deg, ${skill.color}40, transparent, ${skill.color}20)`,
+          }}
+        />
+        {/* Icon */}
+        <Icon
+          className="relative z-10 w-6 h-6 sm:w-7 sm:h-7 transition-transform duration-300 group-hover/skill:scale-110"
+          style={{ color: skill.color }}
         />
       </div>
-    </div>
+      <span className="text-[11px] sm:text-xs font-medium text-muted-foreground group-hover/skill:text-foreground transition-colors text-center leading-tight">
+        {skill.name}
+      </span>
+    </motion.div>
   );
 }
 
-function SkillCard({
+function CategorySection({
   category,
   index,
 }: {
@@ -43,36 +63,39 @@ function SkillCard({
       ref={ref}
       initial={{ opacity: 0, y: 40 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+      transition={{
+        duration: 0.6,
+        delay: index * 0.1,
+        ease: [0.22, 1, 0.36, 1] as const,
+      }}
       className="relative group"
     >
-      {/* Hover glow */}
+      {/* Card glow */}
       <div className="absolute -inset-px rounded-2xl bg-gradient-to-br from-primary/20 via-transparent to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
 
-      <div className="relative bg-card border border-border rounded-2xl p-6 card-shine hover:border-primary/30 transition-all duration-300">
+      <div className="relative bg-card border border-border rounded-2xl p-6 sm:p-8 card-shine hover:border-primary/30 transition-all duration-300">
         {/* Category header */}
-        <div className="flex items-center gap-3 mb-6">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center text-xl">
-            {category.icon}
-          </div>
+        <div className="flex items-baseline justify-between mb-8">
           <div>
-            <h3 className="font-bold text-card-foreground">
+            <h3 className="text-lg font-bold text-card-foreground">
               {category.category}
             </h3>
-            <p className="text-xs text-muted-foreground">
-              {category.skills.length} skills
+            <p className="text-xs text-muted-foreground mt-0.5">
+              {category.description}
             </p>
           </div>
+          <span className="text-xs font-mono text-muted-foreground tabular-nums">
+            {category.skills.length}
+          </span>
         </div>
 
-        {/* Skill bars */}
-        <div className="space-y-4">
+        {/* Skill icons grid */}
+        <div className="grid grid-cols-4 sm:grid-cols-4 gap-4 sm:gap-5 place-items-center">
           {category.skills.map((skill, i) => (
-            <SkillBar
+            <SkillIcon
               key={skill.name}
-              name={skill.name}
-              level={skill.level}
-              delay={index * 0.1 + i * 0.08}
+              skill={skill}
+              delay={index * 0.08 + i * 0.06}
             />
           ))}
         </div>
@@ -84,7 +107,7 @@ function SkillCard({
 export default function Skills() {
   return (
     <section id="skills" className="relative py-24 sm:py-32 px-6 lg:px-8">
-      {/* Background accent */}
+      {/* Background */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-muted/50" />
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
@@ -97,7 +120,7 @@ export default function Skills() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
           className="mb-16"
         >
           <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-3">
@@ -112,10 +135,14 @@ export default function Skills() {
           </p>
         </motion.div>
 
-        {/* Skill cards grid */}
+        {/* Category cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {skillCategories.map((category, index) => (
-            <SkillCard key={category.category} category={category} index={index} />
+            <CategorySection
+              key={category.category}
+              category={category}
+              index={index}
+            />
           ))}
         </div>
       </div>
