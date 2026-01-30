@@ -4,6 +4,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { education, qualifications } from "@/data/profile";
 import { content } from "@/data/content";
+import { ease, duration, stagger, viewportMargin, sectionHeader } from "@/data/motion";
 
 function EducationCard({
   item,
@@ -13,7 +14,7 @@ function EducationCard({
   index: number;
 }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-40px" });
+  const isInView = useInView(ref, { once: true, margin: viewportMargin.card });
 
   return (
     <motion.div
@@ -21,13 +22,13 @@ function EducationCard({
       initial={{ opacity: 0, y: 20 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{
-        duration: 0.5,
-        delay: index * 0.1,
-        ease: [0.22, 1, 0.36, 1] as const,
+        duration: duration.normal,
+        delay: index * stagger.base,
+        ease: ease.smooth,
       }}
       className="relative group"
     >
-      <div className="absolute -inset-px rounded-2xl bg-gradient-to-br from-primary/20 via-transparent to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
+      <div className="card-glow" />
       <div className="relative bg-card border border-border rounded-2xl p-4 sm:p-6 card-shine hover:border-primary/30 transition-all duration-300">
         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-3">
           <div className="flex items-center gap-3">
@@ -75,7 +76,7 @@ function QualificationItem({
   index: number;
 }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-20px" });
+  const isInView = useInView(ref, { once: true, margin: viewportMargin.item });
 
   return (
     <motion.div
@@ -83,9 +84,9 @@ function QualificationItem({
       initial={{ opacity: 0, x: -20 }}
       animate={isInView ? { opacity: 1, x: 0 } : {}}
       transition={{
-        duration: 0.4,
-        delay: index * 0.08,
-        ease: [0.22, 1, 0.36, 1] as const,
+        duration: duration.base,
+        delay: index * stagger.normal,
+        ease: ease.smooth,
       }}
       className="flex items-center gap-4 py-3 border-b border-border last:border-0 group"
     >
@@ -123,17 +124,14 @@ export default function Education() {
       {/* Background */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-muted/50" />
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+        <div className="section-line top-0" />
+        <div className="section-line bottom-0" />
       </div>
 
       <div className="max-w-5xl mx-auto">
         {/* Section header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
+          {...sectionHeader}
           className="mb-16"
         >
           <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-3">
@@ -153,10 +151,10 @@ export default function Education() {
             <motion.h3
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
+              viewport={{ once: true, margin: viewportMargin.card }}
               transition={{
-                duration: 0.5,
-                ease: [0.22, 1, 0.36, 1] as const,
+                duration: duration.normal,
+                ease: ease.smooth,
               }}
               className="text-lg font-bold text-foreground mb-5"
             >
@@ -174,10 +172,10 @@ export default function Education() {
             <motion.h3
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
+              viewport={{ once: true, margin: viewportMargin.card }}
               transition={{
-                duration: 0.5,
-                ease: [0.22, 1, 0.36, 1] as const,
+                duration: duration.normal,
+                ease: ease.smooth,
               }}
               className="text-lg font-bold text-foreground mb-5"
             >

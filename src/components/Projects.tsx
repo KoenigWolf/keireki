@@ -4,6 +4,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { projects } from "@/data/experience";
 import { content } from "@/data/content";
+import { ease, duration, stagger, viewportMargin, sectionHeader } from "@/data/motion";
 
 function ProjectCard({
   project,
@@ -13,18 +14,18 @@ function ProjectCard({
   index: number;
 }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-60px" });
+  const isInView = useInView(ref, { once: true, margin: viewportMargin.block });
 
   return (
     <motion.div
       ref={ref}
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: duration.slow, delay: index * stagger.wide, ease: ease.smooth }}
       className="group relative"
     >
       {/* Glow */}
-      <div className="absolute -inset-px rounded-2xl bg-gradient-to-br from-primary/20 via-transparent to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
+      <div className="card-glow" />
 
       <div className="relative h-full bg-card border border-border rounded-2xl overflow-hidden card-shine hover:border-primary/30 transition-all duration-300 flex flex-col">
         {/* Project visual */}
@@ -54,17 +55,17 @@ function ProjectCard({
             </motion.div>
           </div>
           {/* Number indicator */}
-          <span className="absolute top-4 right-4 text-xs font-mono text-muted-foreground bg-background/60 backdrop-blur-sm px-2 py-1 rounded-md">
+          <span className="absolute top-4 right-4 typo-mono text-muted-foreground bg-background/60 backdrop-blur-sm px-2 py-1 rounded-md">
             0{index + 1}
           </span>
         </div>
 
         {/* Content */}
         <div className="flex flex-col flex-1 p-6">
-          <h3 className="text-lg font-bold text-card-foreground mb-2 group-hover:text-primary transition-colors">
+          <h3 className="typo-sub-heading text-card-foreground mb-2 group-hover:text-primary transition-colors">
             {project.title}
           </h3>
-          <p className="text-sm text-muted-foreground leading-relaxed mb-5 flex-1">
+          <p className="typo-body text-muted-foreground mb-5 flex-1">
             {project.description}
           </p>
 
@@ -140,23 +141,20 @@ export default function Projects() {
       {/* Background */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-muted/50" />
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+        <div className="section-line top-0" />
+        <div className="section-line bottom-0" />
       </div>
 
       <div className="max-w-6xl mx-auto">
         {/* Section header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          {...sectionHeader}
           className="mb-16"
         >
-          <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-3">
+          <span className="inline-block typo-label text-primary mb-3">
             {content.projects.label}
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+          <h2 className="typo-section-heading text-foreground mb-4">
             {content.projects.heading}
           </h2>
           <p className="text-muted-foreground max-w-xl">

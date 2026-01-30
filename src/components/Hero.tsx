@@ -4,11 +4,12 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { profile, highlights } from "@/data/profile";
 import { content } from "@/data/content";
+import { ease, duration } from "@/data/motion";
 
 const fadeUp = (delay: number) => ({
   initial: { opacity: 0, y: 40 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] as const },
+  transition: { duration: duration.hero, delay, ease: ease.smooth },
 });
 
 export default function Hero() {
@@ -58,7 +59,7 @@ export default function Hero() {
         {/* Main headline */}
         <motion.h1
           {...fadeUp(0.45)}
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-6 sm:mb-8"
+          className="typo-hero mb-6 sm:mb-8"
         >
           <span className="gradient-text glow-text">{profile.catchphrase}</span>
         </motion.h1>
@@ -66,7 +67,7 @@ export default function Hero() {
         {/* Description */}
         <motion.p
           {...fadeUp(0.55)}
-          className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-8 sm:mb-10"
+          className="typo-hero-sub text-muted-foreground max-w-2xl mx-auto mb-8 sm:mb-10"
         >
           {profile.description}
         </motion.p>

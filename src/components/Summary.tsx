@@ -4,6 +4,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { careerSummary, strengths } from "@/data/profile";
 import { content } from "@/data/content";
+import { ease, duration, stagger, viewportMargin, sectionHeader } from "@/data/motion";
 
 function StrengthCard({
   strength,
@@ -13,7 +14,7 @@ function StrengthCard({
   index: number;
 }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-40px" });
+  const isInView = useInView(ref, { once: true, margin: viewportMargin.card });
 
   return (
     <motion.div
@@ -21,13 +22,13 @@ function StrengthCard({
       initial={{ opacity: 0, y: 30 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{
-        duration: 0.5,
-        delay: index * 0.1,
-        ease: [0.22, 1, 0.36, 1] as const,
+        duration: duration.normal,
+        delay: index * stagger.base,
+        ease: ease.smooth,
       }}
       className="relative group"
     >
-      <div className="absolute -inset-px rounded-2xl bg-gradient-to-br from-primary/20 via-transparent to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
+      <div className="card-glow" />
       <div className="relative bg-card border border-border rounded-2xl p-6 card-shine hover:border-primary/30 transition-all duration-300 h-full">
         <div className="flex items-center gap-3 mb-3">
           <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-primary/10 text-primary text-sm font-bold">
@@ -51,10 +52,7 @@ export default function Summary() {
       <div className="max-w-5xl mx-auto">
         {/* Section header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
+          {...sectionHeader}
           className="mb-16"
         >
           <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-3">
@@ -75,11 +73,11 @@ export default function Summary() {
               key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
+              viewport={{ once: true, margin: viewportMargin.card }}
               transition={{
-                duration: 0.5,
-                delay: i * 0.08,
-                ease: [0.22, 1, 0.36, 1] as const,
+                duration: duration.normal,
+                delay: i * stagger.normal,
+                ease: ease.smooth,
               }}
               className="text-sm sm:text-base text-muted-foreground leading-relaxed"
             >
@@ -92,8 +90,8 @@ export default function Summary() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
+          viewport={{ once: true, margin: viewportMargin.block }}
+          transition={{ duration: duration.slow, ease: ease.smooth }}
           className="mb-8"
         >
           <h3 className="text-xl sm:text-2xl font-bold text-foreground">

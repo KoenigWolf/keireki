@@ -4,6 +4,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { profile } from "@/data/profile";
 import { content } from "@/data/content";
+import { ease, duration, stagger, viewportMargin } from "@/data/motion";
 
 const urls = [profile.resumeUrl, profile.careerUrl];
 const documents = content.documents.items.map((item, i) => ({
@@ -13,7 +14,7 @@ const documents = content.documents.items.map((item, i) => ({
 
 export default function Documents() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const isInView = useInView(ref, { once: true, margin: viewportMargin.section });
 
   return (
     <section id="documents" className="relative py-24 sm:py-32 px-6 lg:px-8">
@@ -22,13 +23,13 @@ export default function Documents() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: duration.slow, ease: ease.smooth }}
           className="mb-16"
         >
-          <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-3">
+          <span className="inline-block typo-label text-primary mb-3">
             {content.documents.label}
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+          <h2 className="typo-section-heading text-foreground mb-4">
             {content.documents.heading}
           </h2>
           <p className="text-muted-foreground max-w-xl">
@@ -45,14 +46,14 @@ export default function Documents() {
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{
-                duration: 0.6,
-                delay: index * 0.12,
-                ease: [0.22, 1, 0.36, 1],
+                duration: duration.slow,
+                delay: index * stagger.wide,
+                ease: ease.smooth,
               }}
               className="relative group block"
             >
               {/* Glow */}
-              <div className="absolute -inset-px rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
+              <div className="card-glow" />
 
               <div className="relative bg-card border border-border rounded-2xl p-6 card-shine hover:border-primary/30 transition-all duration-300">
                 <div className="flex items-start gap-4">

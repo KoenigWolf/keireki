@@ -4,6 +4,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { experiences, type ProjectDetail } from "@/data/experience";
 import { content } from "@/data/content";
+import { ease, duration, stagger, viewportMargin, sectionHeader } from "@/data/motion";
 
 function ProjectCard({
   project,
@@ -13,7 +14,7 @@ function ProjectCard({
   delay: number;
 }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-30px" });
+  const isInView = useInView(ref, { once: true, margin: viewportMargin.card });
 
   return (
     <motion.div
@@ -21,9 +22,9 @@ function ProjectCard({
       initial={{ opacity: 0, y: 20 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{
-        duration: 0.5,
+        duration: duration.normal,
         delay,
-        ease: [0.22, 1, 0.36, 1] as const,
+        ease: ease.smooth,
       }}
       className="relative bg-muted/50 border border-border rounded-xl p-5 sm:p-6 hover:border-primary/20 transition-all duration-300"
     >
@@ -151,7 +152,7 @@ function ExperienceSection({
   index: number;
 }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-60px" });
+  const isInView = useInView(ref, { once: true, margin: viewportMargin.block });
 
   return (
     <motion.div
@@ -159,14 +160,14 @@ function ExperienceSection({
       initial={{ opacity: 0, y: 40 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{
-        duration: 0.6,
-        delay: index * 0.1,
-        ease: [0.22, 1, 0.36, 1] as const,
+        duration: duration.slow,
+        delay: index * stagger.base,
+        ease: ease.smooth,
       }}
       className="relative group"
     >
       {/* Card glow */}
-      <div className="absolute -inset-px rounded-2xl bg-gradient-to-r from-primary/20 to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
+      <div className="card-glow" />
 
       <div className="relative bg-card border border-border rounded-2xl p-6 sm:p-8 card-shine hover:border-primary/30 transition-all duration-300">
         {/* Company header */}
@@ -223,10 +224,7 @@ export default function Experience() {
       <div className="max-w-5xl mx-auto">
         {/* Section header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
+          {...sectionHeader}
           className="mb-16"
         >
           <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-3">

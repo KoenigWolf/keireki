@@ -4,13 +4,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { timeline } from "@/data/profile";
 import { content } from "@/data/content";
-
-const sectionHeader = {
-  initial: { opacity: 0, y: 30 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-80px" },
-  transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const },
-};
+import { ease, duration, stagger, spring, viewportMargin, sectionHeader } from "@/data/motion";
 
 function TimelineItem({
   item,
@@ -22,14 +16,14 @@ function TimelineItem({
   isLast: boolean;
 }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const isInView = useInView(ref, { once: true, margin: viewportMargin.block });
 
   return (
     <motion.div
       ref={ref}
       initial={{ opacity: 0, y: 40 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: duration.slow, delay: index * stagger.base, ease: ease.smooth }}
       className="relative grid grid-cols-[auto_1fr] gap-6 sm:gap-8"
     >
       {/* Line + dot column */}
@@ -38,7 +32,7 @@ function TimelineItem({
           <motion.div
             initial={{ scale: 0 }}
             animate={isInView ? { scale: 1 } : {}}
-            transition={{ delay: index * 0.1 + 0.3, type: "spring", stiffness: 300 }}
+            transition={{ delay: index * stagger.base + 0.3, ...spring.pop }}
             className="w-3 h-3 rounded-full bg-gradient-to-br from-primary to-accent"
           />
         </div>
@@ -46,7 +40,7 @@ function TimelineItem({
           <motion.div
             initial={{ scaleY: 0 }}
             animate={isInView ? { scaleY: 1 } : {}}
-            transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
+            transition={{ duration: duration.normal, delay: index * stagger.base + 0.2 }}
             className="w-px flex-1 bg-gradient-to-b from-primary/30 to-border origin-top"
           />
         )}

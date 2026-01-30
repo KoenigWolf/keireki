@@ -4,6 +4,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { otherExperiences } from "@/data/profile";
 import { content } from "@/data/content";
+import { ease, duration, stagger, viewportMargin, sectionHeader } from "@/data/motion";
 
 const icons = {
   camera: (
@@ -51,7 +52,7 @@ function StoryCard({
   index: number;
 }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-60px" });
+  const isInView = useInView(ref, { once: true, margin: viewportMargin.block });
 
   return (
     <motion.div
@@ -59,13 +60,13 @@ function StoryCard({
       initial={{ opacity: 0, y: 40 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{
-        duration: 0.6,
-        delay: index * 0.15,
-        ease: [0.22, 1, 0.36, 1] as const,
+        duration: duration.slow,
+        delay: index * stagger.wider,
+        ease: ease.smooth,
       }}
       className="relative group"
     >
-      <div className="absolute -inset-px rounded-2xl bg-gradient-to-br from-primary/20 via-transparent to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
+      <div className="card-glow" />
 
       <div className="relative bg-card border border-border rounded-2xl p-5 sm:p-8 card-shine hover:border-primary/30 transition-all duration-300 h-full">
         {/* Header */}
@@ -100,10 +101,7 @@ export default function Stories() {
       <div className="max-w-5xl mx-auto">
         {/* Section header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
+          {...sectionHeader}
           className="mb-16"
         >
           <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-3">

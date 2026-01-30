@@ -4,17 +4,18 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { profile } from "@/data/profile";
 import { content } from "@/data/content";
+import { ease, duration, stagger, viewportMargin } from "@/data/motion";
 
 export default function Contact() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const isInView = useInView(ref, { once: true, margin: viewportMargin.section });
 
   return (
     <section id="contact" className="relative py-24 sm:py-32 px-6 lg:px-8">
       {/* Background */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-muted/50" />
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+        <div className="section-line top-0" />
       </div>
 
       <div className="max-w-3xl mx-auto text-center" ref={ref}>
@@ -22,13 +23,13 @@ export default function Contact() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: duration.slow, ease: ease.smooth }}
           className="mb-12"
         >
-          <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-primary mb-3">
+          <span className="inline-block typo-label text-primary mb-3">
             {content.contact.label}
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+          <h2 className="typo-section-heading text-foreground mb-4">
             {content.contact.heading}
           </h2>
           <p className="text-muted-foreground max-w-lg mx-auto leading-relaxed">
@@ -40,10 +41,10 @@ export default function Contact() {
         <motion.div
           initial={{ opacity: 0, y: 40, scale: 0.98 }}
           animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-          transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: duration.slow, delay: stagger.wider, ease: ease.smooth }}
           className="relative group"
         >
-          <div className="absolute -inset-px rounded-2xl bg-gradient-to-br from-primary/20 via-transparent to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
+          <div className="card-glow" />
 
           <div className="relative bg-card border border-border rounded-2xl p-8 sm:p-12 card-shine">
             {/* Buttons */}

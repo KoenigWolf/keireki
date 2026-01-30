@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import ThemeToggle from "./ThemeToggle";
 import { content } from "@/data/content";
+import { ease, duration, stagger, spring } from "@/data/motion";
 
 const navLinks = content.nav;
 
@@ -39,7 +40,7 @@ export default function Header() {
       <motion.header
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: duration.slow, ease: ease.smooth }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled ? "glass-strong shadow-sm" : ""
         }`}
@@ -68,7 +69,7 @@ export default function Header() {
                     <motion.span
                       layoutId="nav-pill"
                       className="absolute inset-0 bg-primary/10 rounded-full"
-                      transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                      transition={spring.snappy}
                     />
                   )}
                   <span className="relative z-10">{link.label}</span>
@@ -129,7 +130,7 @@ export default function Header() {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: duration.fast, ease: ease.smooth }}
               className="relative pt-24 px-8 flex flex-col gap-2"
             >
               {navLinks.map((link, i) => (
@@ -139,7 +140,7 @@ export default function Header() {
                   onClick={() => setMobileOpen(false)}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.05 }}
+                  transition={{ delay: i * stagger.tight }}
                   className={`text-2xl font-semibold py-3 border-b border-border transition-colors ${
                     activeSection === link.href.slice(1)
                       ? "text-primary"
