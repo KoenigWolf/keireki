@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { profile } from "@/data/profile";
+import Image from "next/image";
+import { profile, highlights } from "@/data/profile";
 
 const fadeUp = (delay: number) => ({
   initial: { opacity: 0, y: 40 },
@@ -14,15 +15,10 @@ export default function Hero() {
     <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden">
       {/* Ambient background */}
       <div className="absolute inset-0 -z-10">
-        {/* Large gradient orbs */}
         <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-primary/20 rounded-full blur-[128px] animate-pulse-slow" />
         <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-accent/15 rounded-full blur-[128px] animate-pulse-slow [animation-delay:2s]" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[128px]" />
-
-        {/* Dot grid */}
         <div className="absolute inset-0 dot-pattern opacity-30 fade-edge-b" />
-
-        {/* Radial fade */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,var(--background)_70%)]" />
       </div>
 
@@ -38,18 +34,40 @@ export default function Hero() {
           </span>
         </motion.div>
 
-        {/* Name */}
-        <motion.div {...fadeUp(0.2)}>
-          <h2 className="text-base sm:text-lg text-muted-foreground font-medium tracking-wide mb-4">
+        {/* Profile photo */}
+        <motion.div {...fadeUp(0.2)} className="mb-6 flex justify-center">
+          <div className="relative group">
+            {/* Glow ring */}
+            <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-primary via-accent to-primary opacity-60 blur-md group-hover:opacity-80 transition-opacity duration-500" />
+            <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-full border-2 border-background overflow-hidden">
+              <Image
+                src={profile.image}
+                alt={profile.name}
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Name + title */}
+        <motion.div {...fadeUp(0.3)}>
+          <h2 className="text-base sm:text-lg text-muted-foreground font-medium tracking-wide mb-1">
             {profile.name}
             <span className="mx-2 text-border">|</span>
             <span className="text-primary">{profile.nickname}</span>
           </h2>
+          <p className="text-sm text-muted-foreground mb-4">
+            {profile.title} / {profile.location}
+            <span className="mx-1.5 text-border">·</span>
+            {profile.origin}
+          </p>
         </motion.div>
 
         {/* Main headline */}
         <motion.h1
-          {...fadeUp(0.35)}
+          {...fadeUp(0.45)}
           className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-8"
         >
           <span className="gradient-text glow-text">{profile.catchphrase}</span>
@@ -57,15 +75,33 @@ export default function Hero() {
 
         {/* Description */}
         <motion.p
-          {...fadeUp(0.5)}
-          className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-12"
+          {...fadeUp(0.55)}
+          className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed mb-10"
         >
           {profile.description}
         </motion.p>
 
-        {/* CTAs */}
+        {/* Highlight stats */}
         <motion.div
           {...fadeUp(0.65)}
+          className="flex items-center justify-center gap-6 sm:gap-10 mb-12"
+        >
+          {highlights.map((h, i) => (
+            <div key={i} className="text-center">
+              <div className="text-3xl sm:text-4xl font-bold gradient-text">
+                {h.value}
+                <span className="text-lg sm:text-xl ml-0.5">{h.unit}</span>
+              </div>
+              <div className="text-xs sm:text-sm text-muted-foreground mt-1">
+                {h.label}
+              </div>
+            </div>
+          ))}
+        </motion.div>
+
+        {/* CTAs */}
+        <motion.div
+          {...fadeUp(0.75)}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <a
