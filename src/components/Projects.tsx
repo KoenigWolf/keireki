@@ -3,6 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import type { Project } from "@/data/experience";
+import { GITHUB_USER } from "@/lib/github";
 import { content } from "@/data/content";
 import { ease, duration, stagger, viewportMargin, sectionHeader } from "@/data/motion";
 import { IconCode, IconGithub, IconExternalLink } from "@/components/Icons";
@@ -135,6 +136,26 @@ export default function Projects({ projects }: { projects: Project[] }) {
             <ProjectCard key={index} project={project} index={index} />
           ))}
         </div>
+
+        {/* View all link */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: duration.normal, ease: ease.smooth }}
+          className="mt-12 text-center"
+        >
+          <a
+            href={`https://github.com/${GITHUB_USER}?tab=repositories`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-muted-foreground hover:text-foreground rounded-xl glass hover:glow transition-all duration-300 group"
+          >
+            <IconGithub className="w-4 h-4" />
+            View all on GitHub
+            <IconExternalLink className="w-3.5 h-3.5 opacity-50 group-hover:translate-x-0.5 group-hover:opacity-100 transition-all" />
+          </a>
+        </motion.div>
       </div>
     </section>
   );

@@ -1,7 +1,8 @@
 import type { Project } from "@/data/experience";
 
-const GITHUB_USER = "KoenigWolf";
+export const GITHUB_USER = "KoenigWolf";
 const GITHUB_API = `https://api.github.com/users/${GITHUB_USER}/repos`;
+const MAX_DISPLAY = 6;
 
 interface GitHubRepo {
   name: string;
@@ -37,6 +38,7 @@ export async function fetchGitHubProjects(): Promise<Project[]> {
         !repo.name.startsWith(".") &&
         repo.language !== null,
     )
+    .slice(0, MAX_DISPLAY)
     .map((repo) => {
       const homepage = repo.homepage
         ? repo.homepage.startsWith("http")
