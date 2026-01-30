@@ -18,6 +18,7 @@ export default function Error({
           {content.error.description}
         </p>
         <button
+          type="button"
           onClick={reset}
           className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-medium text-primary-foreground bg-primary hover:bg-primary-dark transition-colors"
         >
