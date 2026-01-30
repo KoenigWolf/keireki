@@ -6,7 +6,31 @@ import type { Project } from "@/data/experience";
 import { GITHUB_USER } from "@/lib/github";
 import { content } from "@/data/content";
 import { ease, duration, stagger, viewportMargin, sectionHeader } from "@/data/motion";
-import { IconCode, IconGithub, IconExternalLink } from "@/components/Icons";
+import { IconGithub, IconExternalLink } from "@/components/Icons";
+
+// 言語 → グラデーション背景のマッピング
+const langGradient: Record<string, string> = {
+  TypeScript: "from-sky-500/80 to-blue-600/80",
+  JavaScript: "from-amber-400/80 to-yellow-500/80",
+  Python: "from-emerald-500/80 to-teal-600/80",
+  Astro: "from-orange-500/80 to-rose-500/80",
+  Go: "from-cyan-400/80 to-sky-500/80",
+  Rust: "from-orange-600/80 to-red-600/80",
+  Ruby: "from-red-500/80 to-pink-500/80",
+};
+const defaultGradient = "from-primary/60 to-accent/60";
+
+// 言語 → ドットカラー
+const langDot: Record<string, string> = {
+  TypeScript: "bg-sky-400",
+  JavaScript: "bg-amber-400",
+  Python: "bg-emerald-400",
+  Astro: "bg-orange-400",
+  Go: "bg-cyan-400",
+  Rust: "bg-orange-500",
+  Ruby: "bg-red-400",
+};
+const defaultDot = "bg-primary";
 
 function ProjectCard({
   project,
@@ -18,6 +42,10 @@ function ProjectCard({
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: viewportMargin.block });
 
+  const lang = project.technologies[0] ?? "";
+  const gradient = langGradient[lang] || defaultGradient;
+  const dot = langDot[lang] || defaultDot;
+
   return (
     <motion.div
       ref={ref}
@@ -26,53 +54,56 @@ function ProjectCard({
       transition={{ duration: duration.slow, delay: index * stagger.wide, ease: ease.smooth }}
       className="group relative"
     >
-      {/* Glow */}
       <div className="card-glow" />
 
       <div className="relative h-full bg-card border border-border rounded-2xl overflow-hidden card-shine hover:border-primary/30 transition-all duration-300 flex flex-col">
-        {/* Project visual */}
-        <div className="relative h-44 bg-gradient-to-br from-primary/5 to-accent/5 overflow-hidden">
-          {/* Grid pattern */}
-          <div className="absolute inset-0 dot-pattern opacity-20" />
-          {/* Floating icon */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <motion.div
-              animate={isInView ? { y: [0, -8, 0] } : {}}
-              transition={{ repeat: Infinity, duration: 3, ease: "easeInOut", delay: index * 0.3 }}
-              className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 glass flex items-center justify-center"
-            >
-              <IconCode className="w-7 h-7" />
-            </motion.div>
+        {/* Visual header */}
+        <div className={`relative h-36 bg-gradient-to-br ${gradient} overflow-hidden`}>
+          {/* Pattern overlay */}
+          <div className="absolute inset-0 dot-pattern opacity-[0.12]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+
+          {/* Project name */}
+          <div className="absolute inset-0 flex items-center justify-center p-5">
+            <span className="text-lg sm:text-xl font-bold text-white text-center leading-snug drop-shadow-md">
+              {project.title}
+            </span>
           </div>
-          {/* Number indicator */}
-          <span className="absolute top-4 right-4 typo-mono text-muted-foreground bg-background/60 backdrop-blur-sm px-2 py-1 rounded-md">
-            0{index + 1}
-          </span>
+
+          {/* Language badge */}
+          {lang && (
+            <div className="absolute top-3 right-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/30 backdrop-blur-md text-white text-[11px] font-medium">
+              <span className={`w-2 h-2 rounded-full ${dot}`} />
+              {lang}
+            </div>
+          )}
         </div>
 
         {/* Content */}
-        <div className="flex flex-col flex-1 p-6">
-          <h3 className="typo-sub-heading text-card-foreground mb-2 group-hover:text-primary transition-colors">
-            {project.title}
-          </h3>
-          <p className="typo-body text-muted-foreground mb-5 flex-1">
-            {project.description}
-          </p>
+        <div className="flex flex-col flex-1 p-5">
+          {project.description && (
+            <p className="typo-body text-muted-foreground mb-4 flex-1 line-clamp-2">
+              {project.description}
+            </p>
+          )}
+          {!project.description && <div className="flex-1" />}
 
           {/* Tags */}
-          <div className="flex flex-wrap gap-1.5 mb-5">
-            {project.technologies.map((tech) => (
-              <span
-                key={tech}
-                className="text-[11px] px-2 py-0.5 bg-primary/5 text-primary rounded-md font-medium border border-primary/10"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
+          {project.technologies.length > 1 && (
+            <div className="flex flex-wrap gap-1.5 mb-4">
+              {project.technologies.slice(1).map((tech) => (
+                <span
+                  key={tech}
+                  className="text-[11px] px-2 py-0.5 bg-primary/5 text-primary rounded-md font-medium border border-primary/10"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          )}
 
           {/* Links */}
-          <div className="flex gap-4 pt-4 border-t border-border">
+          <div className="flex gap-4 pt-3 border-t border-border">
             {project.github && (
               <a
                 href={project.github}
