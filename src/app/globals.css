@@ -24,6 +24,15 @@
   --success: #059669;
   --icon-sun: #fbbf24;
   --icon-moon: #475569;
+  --ring: #6366f1;
+  --input: #e4e4e7;
+  --secondary: #f4f4f5;
+  --secondary-foreground: #0a0a0a;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --popover: #ffffff;
+  --popover-foreground: #0a0a0a;
+  --radius: 0.75rem;
   --glass: rgba(255, 255, 255, 0.7);
   --glass-border: rgba(255, 255, 255, 0.3);
   --shadow-color: 0 0% 0%;
@@ -50,6 +59,15 @@
   --success: #34d399;
   --icon-sun: #fbbf24;
   --icon-moon: #475569;
+  --ring: #818cf8;
+  --input: #27272a;
+  --secondary: #27272a;
+  --secondary-foreground: #fafafa;
+  --destructive: #dc2626;
+  --destructive-foreground: #fafafa;
+  --popover: #18181b;
+  --popover-foreground: #fafafa;
+  --radius: 0.75rem;
   --glass: rgba(24, 24, 27, 0.6);
   --glass-border: rgba(255, 255, 255, 0.06);
   --shadow-color: 0 0% 0%;
@@ -283,6 +301,20 @@ body {
     box-shadow: none !important;
     text-shadow: none !important;
     display: none;
+  }
+
+  /* Resume page print overrides */
+  [class*="sticky"] {
+    position: static !important;
+  }
+
+  [class*="backdrop-blur"] {
+    backdrop-filter: none !important;
+  }
+
+  [class*="rounded-xl"] {
+    border-color: #d4d4d8 !important;
+    box-shadow: none !important;
   }
 }
 

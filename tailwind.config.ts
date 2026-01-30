@@ -27,13 +27,32 @@ const config: Config = {
           foreground: "var(--card-foreground)",
         },
         border: "var(--border)",
+        input: "var(--input)",
+        ring: "var(--ring)",
         accent: {
           DEFAULT: "var(--accent)",
           foreground: "var(--accent-foreground)",
         },
+        secondary: {
+          DEFAULT: "var(--secondary)",
+          foreground: "var(--secondary-foreground)",
+        },
+        destructive: {
+          DEFAULT: "var(--destructive)",
+          foreground: "var(--destructive-foreground)",
+        },
+        popover: {
+          DEFAULT: "var(--popover)",
+          foreground: "var(--popover-foreground)",
+        },
         success: "var(--success)",
         "icon-sun": "var(--icon-sun)",
         "icon-moon": "var(--icon-moon)",
+      },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
         sans: [
